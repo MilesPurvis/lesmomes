@@ -89,7 +89,6 @@ export default function Footer() {
           style={{ fontSize: "0.7em" }}
         >
           <div className="flex items-center justify-center gap-4 mb-2">
-            <p>&copy; 2024 Les Momes. All rights reserved.</p>
             <button
               onClick={handleEdit}
               className="text-gray-400 hover:text-white transition-colors p-1"
@@ -99,6 +98,7 @@ export default function Footer() {
                 <path d="M13.586 3.586a2 2 0 112.828 2.828l-.793.793-2.828-2.828.793-.793zM11.379 5.793L3 14.172V17h2.828l8.38-8.379-2.828-2.828z" />
               </svg>
             </button>
+            <p>&copy; 2024 Les Momes. All rights reserved.</p>
           </div>
         </div>
       </div>
