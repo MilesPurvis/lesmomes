@@ -1,49 +1,51 @@
-'use client'
-import { createContext, useContext, useState } from 'react'
+"use client";
+import { createContext, useContext, useState } from "react";
 
-const EditContext = createContext()
+const EditContext = createContext();
 
 export function EditProvider({ children }) {
-  const [isEditing, setIsEditing] = useState(false)
-  const [showPasswordPrompt, setShowPasswordPrompt] = useState(false)
-  const [editPassword, setEditPassword] = useState("")
+  const [isEditing, setIsEditing] = useState(false);
+  const [showPasswordPrompt, setShowPasswordPrompt] = useState(false);
+  const [editPassword, setEditPassword] = useState("");
 
   const handleEdit = () => {
     if (!isEditing) {
-      setShowPasswordPrompt(true)
+      setShowPasswordPrompt(true);
     } else {
-      setIsEditing(false)
+      setIsEditing(false);
     }
-  }
+  };
 
   const checkPassword = () => {
-    if (editPassword === "lesmomes2024") {
-      setIsEditing(true)
-      setShowPasswordPrompt(false)
-      setEditPassword("")
+    if (editPassword === process.env.EDIT_MENU) {
+      setIsEditing(true);
+      setShowPasswordPrompt(false);
+      setEditPassword("");
       // Scroll to menu section
-      const menuElement = document.getElementById('menu')
+      const menuElement = document.getElementById("menu");
       if (menuElement) {
-        menuElement.scrollIntoView({ behavior: 'smooth' })
+        menuElement.scrollIntoView({ behavior: "smooth" });
       }
     } else {
-      alert("Incorrect password")
+      alert("Incorrect password");
     }
-  }
+  };
 
   return (
-    <EditContext.Provider value={{
-      isEditing,
-      setIsEditing,
-      showPasswordPrompt,
-      setShowPasswordPrompt,
-      editPassword,
-      setEditPassword,
-      handleEdit,
-      checkPassword
-    }}>
+    <EditContext.Provider
+      value={{
+        isEditing,
+        setIsEditing,
+        showPasswordPrompt,
+        setShowPasswordPrompt,
+        editPassword,
+        setEditPassword,
+        handleEdit,
+        checkPassword,
+      }}
+    >
       {children}
-      
+
       {showPasswordPrompt && (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
           <div className="bg-white p-8 max-w-sm w-full mx-4">
@@ -75,13 +77,13 @@ export function EditProvider({ children }) {
         </div>
       )}
     </EditContext.Provider>
-  )
+  );
 }
 
 export function useEdit() {
-  const context = useContext(EditContext)
+  const context = useContext(EditContext);
   if (!context) {
-    throw new Error('useEdit must be used within an EditProvider')
+    throw new Error("useEdit must be used within an EditProvider");
   }
-  return context
+  return context;
 }
