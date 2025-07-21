@@ -24,7 +24,7 @@ export function EditProvider({ children }) {
       // Scroll to menu section
       const menuElement = document.getElementById("menu");
       if (menuElement) {
-        menuElement.scrollIntoViews({ behavior: "smooth" });
+        menuElement.scrollIntoView({ behavior: "smooth" });
       }
     } else {
       alert("Incorrect password");
