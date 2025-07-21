@@ -17,14 +17,14 @@ export function EditProvider({ children }) {
   };
 
   const checkPassword = () => {
-    if (editPassword === process.env.EDIT_MENU) {
+    if (editPassword === process.env.NEXT_PUBLIC_EDIT_MENU) {
       setIsEditing(true);
       setShowPasswordPrompt(false);
       setEditPassword("");
       // Scroll to menu section
       const menuElement = document.getElementById("menu");
       if (menuElement) {
-        menuElement.scrollIntoView({ behavior: "smooth" });
+        menuElement.scrollIntoViews({ behavior: "smooth" });
       }
     } else {
       alert("Incorrect password");
