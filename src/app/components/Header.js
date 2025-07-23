@@ -1,7 +1,11 @@
 // ANCHOR: header-navigation - Restaurant header with navigation
+"use client";
 import Image from "next/image";
+import { useState } from "react";
 
 export default function Header() {
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+
   return (
     <header
       className="bg-white border-b border-gray-100 fixed top-0 left-0 right-0 z-50"
@@ -39,6 +43,7 @@ export default function Header() {
           </nav>
           <div className="md:hidden">
             <button
+              onClick={() => setIsMenuOpen(!isMenuOpen)}
               className="hover:text-gray-900"
               style={{ color: "#333333" }}
             >
@@ -52,12 +57,44 @@ export default function Header() {
                   strokeLinecap="round"
                   strokeLinejoin="round"
                   strokeWidth={1}
-                  d="M4 6h16M4 12h16M4 18h16"
+                  d={isMenuOpen ? "M6 18L18 6M6 6l12 12" : "M4 6h16M4 12h16M4 18h16"}
                 />
               </svg>
             </button>
           </div>
         </div>
+
+        {/* Mobile menu */}
+        {isMenuOpen && (
+          <div className="md:hidden">
+            <div className="px-6 py-4 space-y-4 bg-white border-t border-gray-100">
+              <a
+                href="#menu"
+                onClick={() => setIsMenuOpen(false)}
+                className="block text-sm font-light tracking-wide uppercase hover:text-gray-900"
+                style={{ color: "#333333" }}
+              >
+                Menu
+              </a>
+              <a
+                href="#reservations"
+                onClick={() => setIsMenuOpen(false)}
+                className="block text-sm font-light tracking-wide uppercase hover:text-gray-900"
+                style={{ color: "#333333" }}
+              >
+                Reservations
+              </a>
+              <a
+                href="#instagram"
+                onClick={() => setIsMenuOpen(false)}
+                className="block text-sm font-light tracking-wide uppercase hover:text-gray-900"
+                style={{ color: "#333333" }}
+              >
+                Gallery
+              </a>
+            </div>
+          </div>
+        )}
       </div>
 
       {/* Fixed Michelin Logo */}
